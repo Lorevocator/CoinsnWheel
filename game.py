@@ -217,7 +217,7 @@ while (AHT != BHT) or (AHT != CHT) or (AHT != DHT):
 	else:
 		print("\n\nSorry that was the last round. Try again!")
 		quit()
-print("Hey you won! https://www.youtube.com/watch?v=1Bix44CEzY")
+print("Hey you won! https://youtu.be/1Bix44C1EzY")
 
 
 
