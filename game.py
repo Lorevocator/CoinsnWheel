@@ -6,19 +6,62 @@ counter = 0
 rounds = ["Nevergonnaletyoudown","1st", "2nd", "3rd", "4th", "last"]
 curround = 0
 coin = ['H','T']
-A1 = "?"
-B1 = "?"
-C1 = "?"
-D1 = "?"
+A = "?"
+B = "?"
+C = "?"
+D = "?"
 AHT = [(coin[random.randrange(0, 2)])]
 BHT = [(coin[random.randrange(0, 2)])]
 CHT = [(coin[random.randrange(0, 2)])]
 DHT = [(coin[random.randrange(0, 2)])]	
 
+def spin():
+	global A,B,C,D,AHT,BHT,CHT,DHT
+	A = AHT
+	B = BHT
+	C = CHT
+	D = DHT
+	A = "?"
+	B = "?"
+	C = "?"
+	D = "?"
+	times = random.randrange(1,11)
+	i = 0
+	while i != times:
+		AHT,BHT,CHT,DHT = BHT,CHT,DHT,AHT
+		i += 1
+		
+def youwon():
+	global rounds,roundcount
+	print("\n\n\n\nHey you won! https://www.youtube.com/watch?v=1Bix44CEzY\n It took you ",roundcount,"rounds!")
+	#restart = input("\nDo you want to try again? (y/n)")
+	#if restart == "y":
+		
+	#if restart == "n":
+	print("\nThank you! See github.com/Lorevocator/CoinsnWheel for updates") 		
+	quit()
+		
+	
 
+def flip(coin):
+	var = 0
+	while var == 0:
+		print("Do you want to flip coin ",coin,"? (y/n)")
+		flipit = input("")
+		if flipit == "y":
+			if coin == 'H':
+				coin = 'T'
+				var = 1
+			elif coin == 'T':
+				coin = 'H'
+				var = 1
+		elif flipit == "n":
+			var = 1
+		else:
+			var = 0
 def drawcircle():
 	global AHT,BHT,CHT,DHT
-	global A1,B1,C1,D1	
+	global A,B,C,D	
 	firstsec = """\
 
 		           ooo OOO OOO ooo
@@ -46,7 +89,7 @@ def drawcircle():
 		   oOO            0            OOo
 		       oOO        0        OOo
 		           ooo OOO OOO ooo"""
-	print(firstsec,A1, secondsec,B1,thirdsec,C1,fourthsec,D1,fifthsec)
+	print(firstsec,A, secondsec,B,thirdsec,C,fourthsec,D,fifthsec)
 
 
 while (AHT == BHT) and (AHT == CHT) and (AHT == DHT): 
@@ -62,50 +105,121 @@ while tut == "n":
 if tut == "y":
 	print("\n\n\n\n\n\n\n\n\n\n\n\n\n")
 while (AHT != BHT) or (AHT != CHT) or (AHT != DHT): 
-	while roundcount < 5:	
+	while roundcount < 5:
+		spin()		
 		drawcircle()
 		roundcount += 1
 		print("This is the ",rounds[roundcount]," round!")
 		while (counter != 2):
+			if (A == B) and (A== C) and (A == D) and (A != "?"):
+				youwon()
 			print("Which coin do you want to see? (A/B/C/D) (",counter,"/ 2 )")
 			cointorev = input("")
 			counter +=1
 			if cointorev == "A" or cointorev == "a":
 				if AHT == ['H']:
-					A1 = 'H'
+					A = 'H'
 				elif AHT == ['T']:
-					A1 = 'T'
+					A = 'T'
+				drawcircle()				
+				var = 0
+				while var == 0:
+					print("Do you want to flip coin A? (y/n)")
+					flipit = input("")
+					if flipit == "y":
+						if A == 'H':
+							A = 'T'
+							var = 1
+						elif A == 'T':
+							A = 'H'
+							var = 1
+					elif flipit == "n":
+						var = 1
+					else:
+						drawcircle()
+						var = 0
 				drawcircle()
 			elif cointorev == "B" or cointorev == "b":
 				if BHT == ['H']:
-					B1 = 'H'
+					B = 'H'
 				elif BHT == ['T']:
-					B1 = 'T'
+					B = 'T'
+				drawcircle()
+				var = 0
+				while var == 0:
+					print("Do you want to flip coin B? (y/n)")
+					flipit = input("")
+					if flipit == "y":
+						if B == 'H':
+							B = 'T'
+							var = 1
+						elif B == 'T':
+							B = 'H'
+							var = 1
+					elif flipit == "n":
+						var = 1
+					else:
+						drawcircle()
+						var = 0
 				drawcircle()
 			elif cointorev == "C" or cointorev == "c":
 				if CHT == ['H']:
-					C1 = 'H'
+					C = 'H'
 				elif CHT == ['T']:
-					C1 = 'T'
+					C = 'T'
+				drawcircle()
+				var = 0
+				while var == 0:
+					print("Do you want to flip coin C? (y/n)")
+					flipit = input("")
+					if flipit == "y":
+						if C == 'H':
+							C = 'T'
+							var = 1
+						elif C == 'T':
+							C = 'H'
+							var = 1
+					elif flipit == "n":
+						var = 1
+					else:
+						drawcircle()
+						var = 0
 				drawcircle()
 			elif cointorev == "D" or cointorev == "d":
 				if DHT == ['H']:
-					D1 = 'H'
+					D = 'H'
 				elif DHT == ['T']:
-					D1 = 'T'
-				drawcircle()				
-				
+					D = 'T'
+				drawcircle()
+				var = 0
+				while var == 0:
+					print("Do you want to flip coin D? (y/n)")
+					flipit = input("")
+					if flipit == "y":
+						if D == 'H':
+							D = 'T'
+							var = 1
+						elif D == 'T':
+							D = 'H'
+							var = 1
+					elif flipit == "n":
+						var = 1
+					else:
+						drawcircle()
+						var = 0	
+				drawcircle()			
+			
 			else:
 				print("Please insert a valid coin")
 				drawcircle()
 				counter -= 1
-			#print(AHT,A1,BHT,B1,CHT,C1,DHT,D1)
+			#print(AHT,A,BHT,B,CHT,C,DHT,D)
 		if counter == 2:
 			counter = 0
 	else:
 		print("\n\nSorry that was the last round. Try again!")
 		quit()
-print("Hey you won! https://www.youtube.com/watch?v=1Bix44C1EzY")
+print("Hey you won! https://www.youtube.com/watch?v=1Bix44CEzY")
 
 
 
