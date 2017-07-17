@@ -36,7 +36,7 @@ def spin():
 		#print(AHT,A,BHT,B,CHT,C,DHT,D)	
 def youwon():
 	global rounds,roundcount
-	print("\n\n\n\nHey you won! https://www.youtube.com/watch?v=1Bix44CEzY\n It took you ",roundcount,"rounds!")
+	print("\n\n\n\nHey you won! https://youtu.be/1Bix44C1EzY \n It took you ",roundcount,"rounds!")
 	#restart = input("\nDo you want to try again? (y/n)")
 	#if restart == "y":
 		
