@@ -17,6 +17,8 @@ DHT = [(coin[random.randrange(0, 2)])]
 
 def spin():
 	global A,B,C,D,AHT,BHT,CHT,DHT
+	if (A == B) and (A== C) and (A == D) and (A != "?"):
+		youwon()
 	A = AHT
 	B = BHT
 	C = CHT
@@ -27,10 +29,11 @@ def spin():
 	D = "?"
 	times = random.randrange(1,11)
 	i = 0
+	#print(AHT,A,BHT,B,CHT,C,DHT,D)
 	while i != times:
 		AHT,BHT,CHT,DHT = BHT,CHT,DHT,AHT
 		i += 1
-		
+		#print(AHT,A,BHT,B,CHT,C,DHT,D)	
 def youwon():
 	global rounds,roundcount
 	print("\n\n\n\nHey you won! https://www.youtube.com/watch?v=1Bix44CEzY\n It took you ",roundcount,"rounds!")
@@ -106,12 +109,15 @@ if tut == "y":
 	print("\n\n\n\n\n\n\n\n\n\n\n\n\n")
 while (AHT != BHT) or (AHT != CHT) or (AHT != DHT): 
 	while roundcount < 5:
+		if (A == B) and (A == C) and (A == D) and (A != "?"):
+			youwon()
 		spin()		
 		drawcircle()
 		roundcount += 1
 		print("This is the ",rounds[roundcount]," round!")
 		while (counter != 2):
-			if (A == B) and (A== C) and (A == D) and (A != "?"):
+			#print(AHT,A,BHT,B,CHT,C,DHT,D)
+			if (AHT == BHT) and (AHT== CHT) and (AHT == DHT) and (AHT != "?"):
 				youwon()
 			print("Which coin do you want to see? (A/B/C/D) (",counter,"/ 2 )")
 			cointorev = input("")
@@ -129,9 +135,11 @@ while (AHT != BHT) or (AHT != CHT) or (AHT != DHT):
 					if flipit == "y":
 						if A == 'H':
 							A = 'T'
+							AHT = ['T']
 							var = 1
 						elif A == 'T':
 							A = 'H'
+							AHT = ['H']
 							var = 1
 					elif flipit == "n":
 						var = 1
@@ -152,9 +160,11 @@ while (AHT != BHT) or (AHT != CHT) or (AHT != DHT):
 					if flipit == "y":
 						if B == 'H':
 							B = 'T'
+							BHT = ['T']
 							var = 1
 						elif B == 'T':
 							B = 'H'
+							BHT = ['H']
 							var = 1
 					elif flipit == "n":
 						var = 1
@@ -175,9 +185,11 @@ while (AHT != BHT) or (AHT != CHT) or (AHT != DHT):
 					if flipit == "y":
 						if C == 'H':
 							C = 'T'
+							CHT = ['T']
 							var = 1
 						elif C == 'T':
 							C = 'H'
+							CHT = ['H']
 							var = 1
 					elif flipit == "n":
 						var = 1
@@ -198,9 +210,11 @@ while (AHT != BHT) or (AHT != CHT) or (AHT != DHT):
 					if flipit == "y":
 						if D == 'H':
 							D = 'T'
+							DHT = ['T']
 							var = 1
 						elif D == 'T':
 							D = 'H'
+							DHT = ['H']
 							var = 1
 					elif flipit == "n":
 						var = 1
@@ -213,7 +227,9 @@ while (AHT != BHT) or (AHT != CHT) or (AHT != DHT):
 				print("Please insert a valid coin")
 				drawcircle()
 				counter -= 1
-			#print(AHT,A,BHT,B,CHT,C,DHT,D)
+			if (AHT == BHT) and (AHT== CHT) and (AHT == DHT) and (AHT != "?"):
+				youwon()
+			##print(AHT,A,BHT,B,CHT,C,DHT,D)
 		if counter == 2:
 			counter = 0
 	else:
