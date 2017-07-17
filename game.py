@@ -43,25 +43,7 @@ def youwon():
 	#if restart == "n":
 	print("\nThank you! See github.com/Lorevocator/CoinsnWheel for updates") 		
 	quit()
-		
-	
 
-def flip(coin):
-	var = 0
-	while var == 0:
-		print("Do you want to flip coin ",coin,"? (y/n)")
-		flipit = input("")
-		if flipit == "y":
-			if coin == 'H':
-				coin = 'T'
-				var = 1
-			elif coin == 'T':
-				coin = 'H'
-				var = 1
-		elif flipit == "n":
-			var = 1
-		else:
-			var = 0
 def drawcircle():
 	global AHT,BHT,CHT,DHT
 	global A,B,C,D	
@@ -141,7 +123,7 @@ while (AHT != BHT) or (AHT != CHT) or (AHT != DHT):
 							A = 'H'
 							AHT = ['H']
 							var = 1
-					elif flipit == "n":
+					elif flipit == "n" or flipit == "N":
 						var = 1
 					else:
 						drawcircle()
@@ -157,7 +139,7 @@ while (AHT != BHT) or (AHT != CHT) or (AHT != DHT):
 				while var == 0:
 					print("Do you want to flip coin B? (y/n)")
 					flipit = input("")
-					if flipit == "y":
+					if flipit == "y" or flipit == "Y":
 						if B == 'H':
 							B = 'T'
 							BHT = ['T']
@@ -166,7 +148,7 @@ while (AHT != BHT) or (AHT != CHT) or (AHT != DHT):
 							B = 'H'
 							BHT = ['H']
 							var = 1
-					elif flipit == "n":
+					elif flipit == "n" or flipit == "N":
 						var = 1
 					else:
 						drawcircle()
@@ -182,7 +164,7 @@ while (AHT != BHT) or (AHT != CHT) or (AHT != DHT):
 				while var == 0:
 					print("Do you want to flip coin C? (y/n)")
 					flipit = input("")
-					if flipit == "y":
+					if flipit == "y" or flipit == "Y":
 						if C == 'H':
 							C = 'T'
 							CHT = ['T']
@@ -191,7 +173,7 @@ while (AHT != BHT) or (AHT != CHT) or (AHT != DHT):
 							C = 'H'
 							CHT = ['H']
 							var = 1
-					elif flipit == "n":
+					elif flipit == "n" or flipit == "N":
 						var = 1
 					else:
 						drawcircle()
@@ -207,7 +189,7 @@ while (AHT != BHT) or (AHT != CHT) or (AHT != DHT):
 				while var == 0:
 					print("Do you want to flip coin D? (y/n)")
 					flipit = input("")
-					if flipit == "y":
+					if flipit == "y" or flipit == "Y":
 						if D == 'H':
 							D = 'T'
 							DHT = ['T']
@@ -216,7 +198,7 @@ while (AHT != BHT) or (AHT != CHT) or (AHT != DHT):
 							D = 'H'
 							DHT = ['H']
 							var = 1
-					elif flipit == "n":
+					elif flipit == "n" or flipit == "N":
 						var = 1
 					else:
 						drawcircle()
