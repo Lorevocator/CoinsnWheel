@@ -15,6 +15,40 @@ BHT = [(coin[random.randrange(0, 2)])]
 CHT = [(coin[random.randrange(0, 2)])]
 DHT = [(coin[random.randrange(0, 2)])]	
 
+simplecir = """\
+		           ooo OOO0OOO ooo
+		       oOO        0        OOo
+		   oOO            0            OOo
+		oOO               0               OOo
+	      oOO                 0                 OOo
+	    oOO                   0                   OOo
+	   oOO                    0                    OOo
+	  oOO                     0                     OOo
+	 oOO                      0                      OOo
+	 oOO                      0                      OOo
+	 oOO000000000000000000000000000000000000000000000OOo
+	 oOO                      0                      OOo
+	 oOO                      0                      OOo
+	  oOO                     0                     OOo
+	   oOO                    0                    OOo
+	    oOO                   0                  OOo
+	      oOO                 0                 OOo
+		oO                0               OOo
+		   oOO            0            OOo
+		       oOO        0        OOo
+		           ooo OOO0OOO ooo"""
+def tutorial():
+	print("The game is simple: \nThere's a spinning wheel divided in 4 sections,like this one.")
+	print(simplecir)
+	input("Press Enter to continue\n")
+	print("\n\nIn each section there is a coin which is either T(ail) or H(ead).")
+	drawcircle()
+	input("Press Enter to continue\n")
+	print("\n\n Your goal is to set them to be all T(ails) or all H(eads). \n ")
+	input("Press Enter to continue\n")
+	print("\n\nIn order to do so you can see only two of the coins and turn them over (if you want to) but after you see two of the coins, the wheel spins and you don't know which of the coins ends up where .\n\n Good Luck!")
+	#tut = input("Are you ready to play? (y/n) \n")
+
 def spin():
 	global A,B,C,D,AHT,BHT,CHT,DHT
 	if (A == B) and (A== C) and (A == D) and (A != "?"):
@@ -41,7 +75,7 @@ def youwon():
 	#if restart == "y":
 		
 	#if restart == "n":
-	print("\nThank you! See github.com/Lorevocator/CoinsnWheel for updates") 		
+	print("\nThank you! See https://www.github.com/Lorevocator/CoinsnWheel for updates") 		
 	quit()
 
 def drawcircle():
@@ -85,7 +119,8 @@ while (AHT == BHT) and (AHT == CHT) and (AHT == DHT):
 tut = input("Do you already know how to play? (y/n) \n")
 #print(AHT,BHT,CHT,DHT)
 while tut == "n":
-	print("The game is simple: \n there's a spinning wheel divided in 4 sections.In each section there is a coin which is either T(ail) or H(ead).\n Your goal is to set them to be all T(ails) or all H(eads). \n In order to do so you can see only two of the coins and turn them over (if you want to) but after your move, the wheel spins and you don't know which of the coins ends up where (of course it only spins so the cicle will be the same). \n Obviously there's a way to always win... \n Good Luck!")
+	tutorial()
+	#print("The game is simple: \n there's a spinning wheel divided in 4 sections.In each section there is a coin which is either T(ail) or H(ead).\n Your goal is to set them to be all T(ails) or all H(eads). \n In order to do so you can see only two of the coins and turn them over (if you want to) but after your move, the wheel spins and you don't know which of the coins ends up where (of course it only spins so the cicle will be the same). \n Obviously there's a way to always win... \n Good Luck!")
 	tut = input("Are you ready to play? (y/n) \n")
 if tut == "y":
 	print("\n\n\n\n\n\n\n\n\n\n\n\n\n")
@@ -216,8 +251,8 @@ while (AHT != BHT) or (AHT != CHT) or (AHT != DHT):
 			counter = 0
 	else:
 		print("\n\nSorry that was the last round. Try again!")
+		print("\nSee https://github.com/Lorevocator/CoinsnWheel for updates")
 		quit()
-print("Hey you won! https://youtu.be/1Bix44C1EzY")
 
 
 
