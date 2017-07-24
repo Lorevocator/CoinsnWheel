@@ -67,7 +67,6 @@ def tutorial():
 	print("\n\n Your goal is to set them to be all T(ails) or all H(eads). \n ")
 	input("Press Enter to continue\n")
 	print("\n\nIn order to do so you can see only two of the coins and turn them over (if you want to) but after you see two of the coins, the wheel spins and you don't know which of the coins ends up where .\n\n Good Luck!")
-	#tut = input("Are you ready to play? (y/n) \n")
 
 def spin():
 	global A,B,C,D,AHT,BHT,CHT,DHT
@@ -85,15 +84,11 @@ def spin():
 	i = 0
 	while i != times:
 		AHT,BHT,CHT,DHT = BHT,CHT,DHT,AHT
-		i += 1
-	#print(AHT,A,BHT,B,CHT,C,DHT,D)	
+		i += 1	
 def youwon():
 	global rounds,roundcount
 	print("\n\n\n\nHey you won! https://youtu.be/1Bix44C1EzY \n It took you ",roundcount,"rounds!")
-	#restart = input("\nDo you want to try again? (y/n)")
-	#if restart == "y":
 	Highscore()	
-	#if restart == "n":
 	print("\nThank you! See https://www.github.com/Lorevocator/CoinsnWheel for updates") 
 	input("")		
 	quit()
@@ -137,10 +132,9 @@ while (AHT == BHT) and (AHT == CHT) and (AHT == DHT):
 	CHT = [(coin[random.randrange(0, 2)])]
 	DHT = [(coin[random.randrange(0, 2)])]
 tut = input("Do you already know how to play? (y/n) \n")
-#print(AHT,BHT,CHT,DHT)
+
 while tut == "n":
 	tutorial()
-	#print("The game is simple: \n there's a spinning wheel divided in 4 sections.In each section there is a coin which is either T(ail) or H(ead).\n Your goal is to set them to be all T(ails) or all H(eads). \n In order to do so you can see only two of the coins and turn them over (if you want to) but after your move, the wheel spins and you don't know which of the coins ends up where (of course it only spins so the cicle will be the same). \n Obviously there's a way to always win... \n Good Luck!")
 	tut = input("Are you ready to play? (y/n) \n")
 if tut == "y":
 	print("\n\n\n\n\n\n\n\n\n\n\n\n\n")
@@ -153,7 +147,6 @@ while (AHT != BHT) or (AHT != CHT) or (AHT != DHT):
 		roundcount += 1
 		print("This is the ",rounds[roundcount]," round!")
 		while (counter != 2):
-			#print(AHT,A,BHT,B,CHT,C,DHT,D)
 			if (AHT == BHT) and (AHT== CHT) and (AHT == DHT) and (AHT != "?"):
 				youwon()
 			print("Which coin do you want to see? (A/B/C/D) (",counter,"/ 2 )")
@@ -266,12 +259,12 @@ while (AHT != BHT) or (AHT != CHT) or (AHT != DHT):
 				counter -= 1
 			if (AHT == BHT) and (AHT== CHT) and (AHT == DHT) and (AHT != "?"):
 				youwon()
-			##print(AHT,A,BHT,B,CHT,C,DHT,D)
 		if counter == 2:
 			counter = 0
 	else:
 		print("\n\nSorry that was the last round. Try again!")
 		print("\nSee https://github.com/Lorevocator/CoinsnWheel for updates")
+		input("")
 		quit()
 
 
