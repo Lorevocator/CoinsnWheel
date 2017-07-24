@@ -41,9 +41,8 @@ simplecir = """\
 def Highscore():
 	try:	
 		with open("Highscore.txt") as high:
-			score = high.read()
+			score = int(high.read())
 			high.close()
-			score = int(score)
 		if not score <= roundcount:
 			print("New Highscore! \nYour Highscore was ",score," now is ",roundcount)
 			newhigh = open("Highscore.txt","w")
