@@ -37,6 +37,26 @@ simplecir = """\
 		   oOO            0            OOo
 		       oOO        0        OOo
 		           ooo OOO0OOO ooo"""
+
+def Highscore():
+	try:	
+		with open("Highscore.txt") as high:
+			score = high.read()
+			high.close()
+			score = int(score)
+		if not score <= roundcount:
+			print("New Highscore! \nYour Highscore was ",score," now is ",roundcount)
+			newhigh = open("Highscore.txt","w")
+			newhigh.write(str(roundcount))
+			newhigh.close()					
+		else:
+			print("Your highscore is ",int(score)," rounds. Try harder next time")	
+	except FileNotFoundError:
+		print("New Highscore! \nHighscore is now ",roundcount)
+		newhigh = open("Highscore.txt","w")
+		newhigh.write(str(roundcount))
+		newhigh.close()
+				
 def tutorial():
 	print("The game is simple: \nThere's a spinning wheel divided in 4 sections,like this one.")
 	print(simplecir)
@@ -63,19 +83,19 @@ def spin():
 	D = "?"
 	times = random.randrange(1,11)
 	i = 0
-	#print(AHT,A,BHT,B,CHT,C,DHT,D)
 	while i != times:
 		AHT,BHT,CHT,DHT = BHT,CHT,DHT,AHT
 		i += 1
-		#print(AHT,A,BHT,B,CHT,C,DHT,D)	
+	#print(AHT,A,BHT,B,CHT,C,DHT,D)	
 def youwon():
 	global rounds,roundcount
 	print("\n\n\n\nHey you won! https://youtu.be/1Bix44C1EzY \n It took you ",roundcount,"rounds!")
 	#restart = input("\nDo you want to try again? (y/n)")
 	#if restart == "y":
-		
+	Highscore()	
 	#if restart == "n":
-	print("\nThank you! See https://www.github.com/Lorevocator/CoinsnWheel for updates") 		
+	print("\nThank you! See https://www.github.com/Lorevocator/CoinsnWheel for updates") 
+	input("")		
 	quit()
 
 def drawcircle():
