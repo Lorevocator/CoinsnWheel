@@ -1,6 +1,11 @@
 #!/usr/bin/python3.6
 
 import random
+debug = False
+Aname = "A"
+Bname = "B"
+Cname =	"C"
+Dname = "D"
 roundcount = 0
 counter = 0 
 rounds = ["Nevergonnaletyoudown","1st", "2nd", "3rd", "4th", "last"]
@@ -10,10 +15,10 @@ A = "?"
 B = "?"
 C = "?"
 D = "?"
-AHT = [(coin[random.randrange(0, 2)])]
-BHT = [(coin[random.randrange(0, 2)])]
-CHT = [(coin[random.randrange(0, 2)])]
-DHT = [(coin[random.randrange(0, 2)])]	
+AHT = coin[random.randrange(0, 2)]
+BHT = coin[random.randrange(0, 2)]
+CHT = coin[random.randrange(0, 2)]
+DHT = coin[random.randrange(0, 2)]
 
 simplecir = """\
 		           ooo OOO0OOO ooo
@@ -38,20 +43,54 @@ simplecir = """\
 		       oOO        0        OOo
 		           ooo OOO0OOO ooo"""
 
+def asktoflip(Coin,Coinname):
+	flipcoin = 0
+	while flipcoin == 0:
+		print("Do you want to flip coin",Coinname,"? (y/n)")
+		flipit = input("")
+		if flipit == "y" or flipit == "Y":
+			if Coin == 'H':
+				Coin = 'T'
+				flipcoin = 1
+			elif Coin == 'T':
+				Coin = 'H'
+				flipcoin = 1
+		elif flipit == "n" or flipit == "N":
+			flipcoin = 1
+		else:
+			drawcircle()
+			flipcoin = 0
+	return Coin
 def Highscore():
 	try:	
 		with open("Highscore.txt") as high:
 			score = int(high.read())
 			high.close()
 		if not score <= roundcount:
-			print("New Highscore! \nYour Highscore was ",score," now is ",roundcount)
+			print("New Highscore! \nYour Highscore was",score,"round(s) now is",roundcount,"round(s)")
 			newhigh = open("Highscore.txt","w")
 			newhigh.write(str(roundcount))
 			newhigh.close()					
 		else:
-			print("Your highscore is ",int(score)," rounds. Try harder next time")	
-	except FileNotFoundError:
-		print("New Highscore! \nHighscore is now ",roundcount)
+			print("Your highscore is",int(score),"round(s). Try harder next time!")
+			reset = input("Do you want to reset your Highscore? (y/n)")
+			if reset == "y" or reset == "Y":
+				print("Your Highscore was resetted! \nBye!") 
+				f = open("Highscore.txt","w")
+				f.close()
+			elif reset == "n" or reset == "N":
+			
+				try:
+					with open("Highscore.txt") as high:
+						score = int(high.read())
+						high.close()
+					print("Ok then! your highscore is still",score,"round(s) !")
+				except:
+					print("Ok then!")
+				finally:
+					print("Bye!") 	
+	except (FileNotFoundError, ValueError) as error:
+		print("New Highscore! \nHighscore is now",roundcount,"round(s)")
 		newhigh = open("Highscore.txt","w")
 		newhigh.write(str(roundcount))
 		newhigh.close()
@@ -59,22 +98,18 @@ def Highscore():
 def tutorial():
 	print("The game is simple: \nThere's a spinning wheel divided in 4 sections,like this one.")
 	print(simplecir)
-	input("Press Enter to continue\n")
+	input("Press Enter to continue")
 	print("\n\nIn each section there is a coin which is either T(ail) or H(ead).")
 	drawcircle()
 	input("Press Enter to continue\n")
-	print("\n\n Your goal is to set them to be all T(ails) or all H(eads). \n ")
+	print("\n\nYour goal is to set them to be all T(ails) or all H(eads). \n ")
 	input("Press Enter to continue\n")
-	print("\n\nIn order to do so you can see only two of the coins and turn them over (if you want to) but after you see two of the coins, the wheel spins and you don't know which of the coins ends up where .\n\n Good Luck!")
+	print("\n\nIn order to do so you can see only two of the coins and turn them over (if you want to) but after you see two of the coins, the wheel spins and you don't know which of the coins ends up where .\n\nGood Luck!")
 
 def spin():
 	global A,B,C,D,AHT,BHT,CHT,DHT
-	if (A == B) and (A== C) and (A == D) and (A != "?"):
+	if (AHT == BHT) and (AHT== CHT) and (AHT == DHT):
 		youwon()
-	A = AHT
-	B = BHT
-	C = CHT
-	D = DHT
 	A = "?"
 	B = "?"
 	C = "?"
@@ -86,7 +121,7 @@ def spin():
 		i += 1	
 def youwon():
 	global rounds,roundcount
-	print("\n\n\n\nHey you won! https://youtu.be/1Bix44C1EzY \n It took you ",roundcount,"rounds!")
+	print("\n\n\n\nHey you won! https://youtu.be/1Bix44C1EzY \nIt took you ",roundcount,"rounds!")
 	Highscore()	
 	print("\nThank you! See https://www.github.com/Lorevocator/CoinsnWheel for updates") 
 	input("")		
@@ -126,137 +161,68 @@ def drawcircle():
 
 
 while (AHT == BHT) and (AHT == CHT) and (AHT == DHT): 
-	AHT = [(coin[random.randrange(0, 2)])]
-	BHT = [(coin[random.randrange(0, 2)])]
-	CHT = [(coin[random.randrange(0, 2)])]
-	DHT = [(coin[random.randrange(0, 2)])]
+	AHT = coin[random.randrange(0, 2)]
+	BHT = coin[random.randrange(0, 2)]
+	CHT = coin[random.randrange(0, 2)]
+	DHT = coin[random.randrange(0, 2)]
+	print("There's a 6.25% possibility that this message shows up.")
 tut = input("Do you already know how to play? (y/n) \n")
 
-while tut == "n":
+while tut == "n" or tut == "N":
 	tutorial()
 	tut = input("Are you ready to play? (y/n) \n")
-if tut == "y":
+if tut == "d" or tut == "D":
+	#enter debug mode
+	debug = True
+elif tut != "N" and tut != "n":
 	print("\n\n\n\n\n\n\n\n\n\n\n\n\n")
 while (AHT != BHT) or (AHT != CHT) or (AHT != DHT): 
 	while roundcount < 5:
-		if (A == B) and (A == C) and (A == D) and (A != "?"):
+		if (AHT == BHT) and (AHT == CHT) and (AHT == DHT):
 			youwon()
 		spin()		
 		drawcircle()
 		roundcount += 1
 		print("This is the ",rounds[roundcount]," round!")
 		while (counter != 2):
-			if (AHT == BHT) and (AHT== CHT) and (AHT == DHT) and (AHT != "?"):
+			if (AHT == BHT) and (AHT== CHT) and (AHT == DHT):
 				youwon()
+			if debug:
+				print(A,B,C,D,AHT,BHT,CHT,DHT)
 			print("Which coin do you want to see? (A/B/C/D) (",counter,"/ 2 )")
 			cointorev = input("")
 			counter +=1
 			if cointorev == "A" or cointorev == "a":
-				if AHT == ['H']:
-					A = 'H'
-				elif AHT == ['T']:
-					A = 'T'
-				drawcircle()				
-				var = 0
-				while var == 0:
-					print("Do you want to flip coin A? (y/n)")
-					flipit = input("")
-					if flipit == "y":
-						if A == 'H':
-							A = 'T'
-							AHT = ['T']
-							var = 1
-						elif A == 'T':
-							A = 'H'
-							AHT = ['H']
-							var = 1
-					elif flipit == "n" or flipit == "N":
-						var = 1
-					else:
-						drawcircle()
-						var = 0
+				A = AHT
+				drawcircle()
+				A = asktoflip(A,Aname)
+				AHT = A			
 				drawcircle()
 			elif cointorev == "B" or cointorev == "b":
-				if BHT == ['H']:
-					B = 'H'
-				elif BHT == ['T']:
-					B = 'T'
+				B = BHT
 				drawcircle()
-				var = 0
-				while var == 0:
-					print("Do you want to flip coin B? (y/n)")
-					flipit = input("")
-					if flipit == "y" or flipit == "Y":
-						if B == 'H':
-							B = 'T'
-							BHT = ['T']
-							var = 1
-						elif B == 'T':
-							B = 'H'
-							BHT = ['H']
-							var = 1
-					elif flipit == "n" or flipit == "N":
-						var = 1
-					else:
-						drawcircle()
-						var = 0
+				B = asktoflip(B,Bname)
+				BHT = B
 				drawcircle()
 			elif cointorev == "C" or cointorev == "c":
-				if CHT == ['H']:
-					C = 'H'
-				elif CHT == ['T']:
-					C = 'T'
+				print(CHT)
+				C = CHT
 				drawcircle()
-				var = 0
-				while var == 0:
-					print("Do you want to flip coin C? (y/n)")
-					flipit = input("")
-					if flipit == "y" or flipit == "Y":
-						if C == 'H':
-							C = 'T'
-							CHT = ['T']
-							var = 1
-						elif C == 'T':
-							C = 'H'
-							CHT = ['H']
-							var = 1
-					elif flipit == "n" or flipit == "N":
-						var = 1
-					else:
-						drawcircle()
-						var = 0
+				C = asktoflip(C,Cname)
+				CHT = C
 				drawcircle()
 			elif cointorev == "D" or cointorev == "d":
-				if DHT == ['H']:
-					D = 'H'
-				elif DHT == ['T']:
-					D = 'T'
+				D = DHT
 				drawcircle()
-				var = 0
-				while var == 0:
-					print("Do you want to flip coin D? (y/n)")
-					flipit = input("")
-					if flipit == "y" or flipit == "Y":
-						if D == 'H':
-							D = 'T'
-							DHT = ['T']
-							var = 1
-						elif D == 'T':
-							D = 'H'
-							DHT = ['H']
-							var = 1
-					elif flipit == "n" or flipit == "N":
-						var = 1
-					else:
-						drawcircle()
-						var = 0	
+				D = asktoflip(D,Dname)
+				DHT = D	
 				drawcircle()			
 			
 			else:
 				print("Please insert a valid coin")
 				drawcircle()
 				counter -= 1
-			if (AHT == BHT) and (AHT== CHT) and (AHT == DHT) and (AHT != "?"):
+			if (AHT == BHT) and (AHT== CHT) and (AHT == DHT):
 				youwon()
 		if counter == 2:
 			counter = 0
