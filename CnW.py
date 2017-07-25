@@ -1,6 +1,7 @@
 #!/usr/bin/python3.6
 
 import random
+debug = False
 Aname = "A"
 Bname = "B"
 Cname =	"C"
@@ -42,7 +43,7 @@ simplecir = """\
 		       oOO        0        OOo
 		           ooo OOO0OOO ooo"""
 
-def asktoflip(Coin,CoinHT,Coinname):
+def asktoflip(Coin,Coinname):
 	flipcoin = 0
 	while flipcoin == 0:
 		print("Do you want to flip coin",Coinname,"? (y/n)")
@@ -50,11 +51,9 @@ def asktoflip(Coin,CoinHT,Coinname):
 		if flipit == "y" or flipit == "Y":
 			if Coin == 'H':
 				Coin = 'T'
-				CoinHT = 'T'
 				flipcoin = 1
 			elif Coin == 'T':
 				Coin = 'H'
-				CoinHT = 'H'
 				flipcoin = 1
 		elif flipit == "n" or flipit == "N":
 			flipcoin = 1
@@ -68,18 +67,33 @@ def Highscore():
 			score = int(high.read())
 			high.close()
 		if not score <= roundcount:
-			print("New Highscore! \nYour Highscore was",score,"now is",roundcount)
+			print("New Highscore! \nYour Highscore was",score,"round(s) now is",roundcount,"round(s)")
 			newhigh = open("Highscore.txt","w")
 			newhigh.write(str(roundcount))
 			newhigh.close()					
 		else:
-			print("Your highscore is",int(score),"rounds. Try harder next time!")	
-	except FileNotFoundError:
-		print("New Highscore! \nHighscore is now",roundcount)
+			print("Your highscore is",int(score),"round(s). Try harder next time!")
+			reset = input("Do you want to reset your Highscore? (y/n)")
+			if reset == "y" or reset == "Y":
+				print("Your Highscore was resetted! \nBye!") 
+				f = open("Highscore.txt","w")
+				f.close()
+			elif reset == "n" or reset == "N":
+			
+				try:
+					with open("Highscore.txt") as high:
+						score = int(high.read())
+						high.close()
+					print("Ok then! your highscore is still",score,"round(s) !")
+				except:
+					print("Ok then!")
+				finally:
+					print("Bye!") 	
+	except (FileNotFoundError, ValueError) as error:
+		print("New Highscore! \nHighscore is now",roundcount,"round(s)")
 		newhigh = open("Highscore.txt","w")
 		newhigh.write(str(roundcount))
 		newhigh.close()
-	
 				
 def tutorial():
 	print("The game is simple: \nThere's a spinning wheel divided in 4 sections,like this one.")
@@ -154,10 +168,13 @@ while (AHT == BHT) and (AHT == CHT) and (AHT == DHT):
 	print("There's a 6.25% possibility that this message shows up.")
 tut = input("Do you already know how to play? (y/n) \n")
 
-while tut == "n":
+while tut == "n" or tut == "N":
 	tutorial()
 	tut = input("Are you ready to play? (y/n) \n")
-if tut == "y":
+if tut == "d" or tut == "D":
+	#enter debug mode
+	debug = True
+elif tut != "N" and tut != "n":
 	print("\n\n\n\n\n\n\n\n\n\n\n\n\n")
 while (AHT != BHT) or (AHT != CHT) or (AHT != DHT): 
 	while roundcount < 5:
@@ -170,32 +187,34 @@ while (AHT != BHT) or (AHT != CHT) or (AHT != DHT):
 		while (counter != 2):
 			if (AHT == BHT) and (AHT== CHT) and (AHT == DHT):
 				youwon()
+			if debug:
+				print(A,B,C,D,AHT,BHT,CHT,DHT)
 			print("Which coin do you want to see? (A/B/C/D) (",counter,"/ 2 )")
 			cointorev = input("")
 			counter +=1
 			if cointorev == "A" or cointorev == "a":
 				A = AHT
 				drawcircle()
-				A = asktoflip(A,AHT,Aname)
+				A = asktoflip(A,Aname)
 				AHT = A			
 				drawcircle()
 			elif cointorev == "B" or cointorev == "b":
 				B = BHT
 				drawcircle()
-				A = asktoflip(B,BHT,Bname)
+				B = asktoflip(B,Bname)
 				BHT = B
 				drawcircle()
 			elif cointorev == "C" or cointorev == "c":
 				print(CHT)
 				C = CHT
 				drawcircle()
-				C = asktoflip(C,CHT,Cname)
+				C = asktoflip(C,Cname)
 				CHT = C
 				drawcircle()
 			elif cointorev == "D" or cointorev == "d":
 				D = DHT
 				drawcircle()
-				D = asktoflip(D,CHT,Cname)
+				D = asktoflip(D,Dname)
 				DHT = D	
 				drawcircle()			
 			
@@ -203,7 +222,7 @@ while (AHT != BHT) or (AHT != CHT) or (AHT != DHT):
 				print("Please insert a valid coin")
 				drawcircle()
 				counter -= 1
-			if (AHT == BHT) and (AHT== CHT) and (AHT == DHT) and (AHT != "?"):
+			if (AHT == BHT) and (AHT== CHT) and (AHT == DHT):
 				youwon()
 		if counter == 2:
 			counter = 0
