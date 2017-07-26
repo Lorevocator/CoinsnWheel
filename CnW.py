@@ -21,27 +21,27 @@ CHT = coin[random.randrange(0, 2)]
 DHT = coin[random.randrange(0, 2)]
 
 simplecir = """\
-		           ooo OOO0OOO ooo
-		       oOO        0        OOo
-		   oOO            0            OOo
-		oOO               0               OOo
-	      oOO                 0                 OOo
-	    oOO                   0                   OOo
-	   oOO                    0                    OOo
-	  oOO                     0                     OOo
-	 oOO                      0                      OOo
-	 oOO                      0                      OOo
-	 oOO000000000000000000000000000000000000000000000OOo
-	 oOO                      0                      OOo
-	 oOO                      0                      OOo
-	  oOO                     0                     OOo
-	   oOO                    0                    OOo
-	    oOO                   0                  OOo
-	      oOO                 0                 OOo
-		oO                0               OOo
-		   oOO            0            OOo
-		       oOO        0        OOo
-		           ooo OOO0OOO ooo"""
+                           ooo OOO0OOO ooo
+                       oOO        0        OOo
+                   oOO            0            OOo
+                oOO               0               OOo
+              oOO                 0                 OOo
+            oOO                   0                   OOo
+           oOO                    0                    OOo
+          oOO                     0                     OOo
+         oOO                      0                      OOo
+         oOO                      0                      OOo
+         oOO000000000000000000000000000000000000000000000OOo
+         oOO                      0                      OOo
+         oOO                      0                      OOo
+          oOO                     0                     OOo
+           oOO                    0                    OOo
+            oOO                   0                  OOo
+              oOO                 0                 OOo
+                oOO               0               OOo
+                   oOO            0            OOo
+                       oOO        0        OOo
+                           ooo OOO0OOO ooo"""
 
 def asktoflip(Coin,Coinname):
 	flipcoin = 0
@@ -131,32 +131,30 @@ def drawcircle():
 	global AHT,BHT,CHT,DHT
 	global A,B,C,D	
 	firstsec = """\
-
-		           ooo OOO OOO ooo
-		       oOO        0        OOo
-		   oOO            0            OOo
-		oOO               0               OOo
-	      oOO                 0                 OOo
-	    oOO       A("""
-	
+                       ooo OOO OOO ooo
+                   oOO        0        OOo
+               oOO            0            OOo
+            oOO               0               OOo
+          oOO                 0                 OOo
+        oOO       A("""
 	secondsec = """)      0        B("""
 	thirdsec = """)    OOo
-	   oOO                    0                    OOo
-	  oOO                     0                     OOo
-	 oOO                      0                      OOo
-	 oOO                      0                      OOo
-	 oOO000000000000000000000000000000000000000000000OOo
-	 oOO                      0                      OOo
-	 oOO                      0                      OOo
-	  oOO                     0                     OOo
-	   oOO        C("""
+       oOO                    0                    OOo
+      oOO                     0                     OOo
+     oOO                      0                      OOo
+     oOO                      0                      OOo
+     oOO000000000000000000000000000000000000000000000OOo
+     oOO                      0                      OOo
+     oOO                      0                      OOo
+      oOO                     0                     OOo
+       oOO        C("""
 	fourthsec = """)      0     D("""
 	fifthsec = """)         OOo
-	    oOO                   0                  OOo
-		oOO               0               OOo
-		   oOO            0            OOo
-		       oOO        0        OOo
-		           ooo OOO OOO ooo"""
+        oOO                   0                  OOo
+            oOO               0               OOo
+               oOO            0            OOo
+                   oOO        0        OOo
+                       ooo OOO OOO ooo"""
 	print(firstsec,A, secondsec,B,thirdsec,C,fourthsec,D,fifthsec)
 
 
